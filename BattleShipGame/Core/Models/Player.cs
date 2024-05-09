@@ -35,4 +35,9 @@ public class Player
     {
         return Username;
     }
+    
+    public bool HasShips()
+    {
+        return Ship.Length > 0;
+    }
 }
