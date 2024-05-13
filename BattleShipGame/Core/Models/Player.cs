@@ -3,11 +3,11 @@ namespace BattleShipGame.Core.Models;
 public class Player
 {
     string Username { get; set; }
-    Ship[] Ship { get; set; }
+    Ship[] Ships { get; set; }
 
-    public Player(string username, Ship[] ship)
+    public Player(string username, Ship[] ships)
     {
-        Ship = ship;
+        Ships = ships;
         
         if (string.IsNullOrEmpty(Username))
         {
@@ -18,17 +18,17 @@ public class Player
     
     public void AddShip(Ship ship)
     {
-        Ship = Ship.Concat(new Ship[] { ship }).ToArray();
+        Ships = Ships.Concat(new Ship[] { ship }).ToArray();
     }
     
     public void RemoveShip(Ship ship)
     {
-        Ship = Ship.Where(s => s != ship).ToArray();
+        Ships = Ships.Where(s => s != ship).ToArray();
     }
     
     public Ship[] GetShips()
     {
-        return Ship;
+        return Ships;
     }
     
     public string GetUsername()
@@ -38,6 +38,6 @@ public class Player
     
     public bool HasShips()
     {
-        return Ship.Length > 0;
+        return Ships.Length > 0;
     }
 }
