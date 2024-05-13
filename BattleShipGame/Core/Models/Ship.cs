@@ -1,22 +1,23 @@
 namespace BattleShipGame.Core.Models;
 
-public abstract class Ship(Cell[] cell)
+public abstract class Ship(int length)
 {
-    public Cell[] Cell { get; set; } = cell;
-    
+    private int _length = length;
+    Cell[] Cells { get; set; }
+
     public void FillCell(Cell cell)
     {
-        Cell = Cell.Concat(new Cell[] { cell }).ToArray();
+        Cells = Cells.Concat(new Cell[] { cell }).ToArray();
     }
     
     public void RemoveCell(Cell cell)
     {
-        Cell = Cell.Where(c => c != cell).ToArray();
+        Cells = Cells.Where(c => c != cell).ToArray();
     }
     
     public Cell[] GetCells()
     {
-        return Cell;
+        return Cells;
     }
     
 }
