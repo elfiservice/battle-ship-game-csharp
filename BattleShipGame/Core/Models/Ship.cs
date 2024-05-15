@@ -25,7 +25,7 @@ public abstract class Ship(int length)
         return _length;
     }
 
-    public override string ToString()
+    public string ShowShipToString()
     {
         // loop over the cells and return the string representation of the ship
         return string.Join(", ", Cells.Select(cell => $"({cell.Column.GetValue()},{cell.Row.GetValue()})"));

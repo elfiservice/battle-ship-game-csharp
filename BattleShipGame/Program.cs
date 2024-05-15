@@ -25,7 +25,7 @@ for (int i = 0; i < numberOfShipsToProvide; i++)
 
     do
     {
-        Console.WriteLine($"Player 1, Ship: {i + 1}");
+        Console.WriteLine($"Player1 {game.Player1.GetUsername()}, Ship{i + 1} {ship.ToString()}: ");
         
         Console.WriteLine("Enter Column: ");
         var columnValue = Console.ReadLine();
@@ -43,7 +43,7 @@ for (int i = 0; i < numberOfShipsToProvide; i++)
         --shipLength;
     } while (shipLength > 0);
     
-    Console.WriteLine($"LOG: {ship.ToString()}");
+    Console.WriteLine($"LOG: {ship.ShowShipToString()}");
 }
 
 
