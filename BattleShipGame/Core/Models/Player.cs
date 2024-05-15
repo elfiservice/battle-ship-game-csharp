@@ -5,11 +5,11 @@ public class Player
     string Username { get; set; }
     Ship[] Ships { get; set; }
 
-    public Player(string username, Ship[] ships)
+    private BattleField BattleField { get; set; }
+
+    public Player(string username)
     {
-        Ships = ships;
-        
-        if (string.IsNullOrEmpty(Username))
+        if (string.IsNullOrEmpty(username))
         {
             throw new ArgumentException("Username is required.");
         }
@@ -39,5 +39,10 @@ public class Player
     public bool HasShips()
     {
         return Ships.Length > 0;
+    }
+
+    public void SetBattleField(BattleField field)
+    {
+        BattleField = field;
     }
 }
