@@ -43,7 +43,7 @@ for (int i = 0; i < numberOfShipsToProvide; i++)
         --shipLength;
     } while (shipLength > 0);
     
-    Console.WriteLine($"LOG: {ship.GetCells().ToString()}");
+    Console.WriteLine($"LOG: {ship.ToString()}");
 }
 
 
