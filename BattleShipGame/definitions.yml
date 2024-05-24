@@ -7,8 +7,6 @@ contexts:
         attributes:
           - name: "Players"
             definition: "The players who are playing the game"
-          - name: "Battle field"
-            definition: "The battlefield where the game is played"
           - name: "Winner"
             definition: "The player who sinks all of the other player's ships"
       - name: "Player 1"
@@ -18,6 +16,8 @@ contexts:
             definition: "The name of the player"
           - name: "Ships"
             definition: "The ships that the player has placed on the battlefield"
+          - name: "Battle field"
+            definition: "The battlefield where the player has placed their ships"
       - name: "Player 2"
         definition: "The second player to play the game"
       - name: "Battle field"
@@ -27,8 +27,6 @@ contexts:
             definition: "The ships that each player must place on the battlefield"
           - name: "Valid dimensions"
             definition: "The dimensions of the battlefield are 10x10"
-          - name: "Player"
-            definition: "The player who is currently playing the game"
       - name: "Cell"
         definition: "A single square on the battlefield"
         attributes:

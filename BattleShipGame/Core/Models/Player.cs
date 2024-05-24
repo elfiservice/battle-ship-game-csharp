@@ -3,17 +3,21 @@ namespace BattleShipGame.Core.Models;
 public class Player
 {
     string Username { get; set; }
+    
+    // maybe not be needed
     Ship[] Ships { get; set; }
 
     private BattleField BattleField { get; set; }
 
-    public Player(string username)
+    public Player(string username, BattleField battleField)
     {
-        if (string.IsNullOrEmpty(username))
+        if (string.IsNullOrEmpty(username) || battleField is null)
         {
-            throw new ArgumentException("Username is required.");
+            throw new ArgumentException("Username and Battlefield are required.");
         }
         Username = username;
+        BattleField = battleField;
+        Ships = new Ship[] { };
     }
     
     public void AddShip(Ship ship)
@@ -44,5 +48,10 @@ public class Player
     public void SetBattleField(BattleField field)
     {
         BattleField = field;
+    }
+    
+    public BattleField GetBattleField()
+    {
+        return BattleField;
     }
 }

@@ -14,13 +14,14 @@ do
 } while (player1Name is "" or null);
 
 
-game.Player1 = new Player(player1Name);
+game.Player1 = new Player(player1Name, new BattleField());
+var battleFieldPlayer1 = game.Player1.GetBattleField();
 
-var numberOfShipsToProvide = game.RequiredShips.Length;
+var numberOfShipsToProvide = battleFieldPlayer1.RequiredShips.Length;
 
 for (int i = 0; i < numberOfShipsToProvide; i++)
 {
-    var ship = game.RequiredShips[i];
+    var ship = battleFieldPlayer1.RequiredShips[i];
     var shipLength = ship.GetShipLength();
 
     do
