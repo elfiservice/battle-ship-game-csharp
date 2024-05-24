@@ -26,22 +26,30 @@ for (int i = 0; i < numberOfShipsToProvide; i++)
 
     do
     {
-        Console.WriteLine($"Player1 {game.Player1.GetUsername()}, Ship{i + 1} {ship.ToString()}: ");
+        try
+        {
+            Console.WriteLine($"Player1 {game.Player1.GetUsername()}, Ship{i + 1} {ship.ToString()}: ");
         
-        Console.WriteLine("Enter Column: ");
-        var columnValue = Console.ReadLine();
-        var column = new Column(columnValue);
+            Console.WriteLine("Enter Column: ");
+            var columnValue = Console.ReadLine();
+            var column = new Column(columnValue);
         
             
-        Console.WriteLine("Enter Row: ");
-        var rowValue = Console.ReadLine();
-        var row = new Row(Convert.ToInt32(rowValue));
+            Console.WriteLine("Enter Row: ");
+            var rowValue = Console.ReadLine();
+            var row = new Row(Convert.ToInt32(rowValue));
 
-        var cell = new Cell(column, row);
+            var cell = new Cell(column, row);
         
-        ship.FillCell(cell);
+            ship.FillCell(cell);
         
-        --shipLength;
+            --shipLength;
+        }
+        catch (Exception e)
+        {
+            Console.WriteLine($"Ops! {e.Message}, try again.");
+        }
+
     } while (shipLength > 0);
     
     Console.WriteLine($"LOG: {ship.ShowShipToString()}");
