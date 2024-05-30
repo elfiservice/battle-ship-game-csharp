@@ -7,6 +7,7 @@ public abstract class Ship(int length)
     
     public void FillCell(Cell cell)
     {
+        CheckPreviousCell(cell);
         Cells = Cells.Concat(new Cell[] { cell }).ToArray();
     }
     
@@ -29,5 +30,19 @@ public abstract class Ship(int length)
     {
         // loop over the cells and return the string representation of the ship
         return string.Join(", ", Cells.Select(cell => $"({cell.Column.GetValue()},{cell.Row.GetValue()})"));
+    }
+    
+    private void CheckPreviousCell(Cell cell)
+    {
+        if (Cells.Length == 0)
+        {
+            return;
+        }
+        
+        var lastCell = Cells.Last();
+        if (lastCell.Column.GetValue() == cell.Column.GetValue() && lastCell.Row.GetValue() == cell.Row.GetValue())
+        {
+            throw new ArgumentException("The cell is already in the ship.");
+        }
     }
 }
