@@ -18,4 +18,9 @@ public class Column
     {
         return Value;
     }
+    
+    public int GetIndex()
+    {
+        return Array.IndexOf(_validValues, Value);
+    }
 }

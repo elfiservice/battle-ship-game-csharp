@@ -18,4 +18,9 @@ public class Row
     {
         return Value;
     }
+    
+    public int GetIndex()
+    {
+        return Array.IndexOf(_validValues, Value);
+    }
 }
