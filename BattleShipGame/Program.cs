@@ -2,10 +2,11 @@
 
 using BattleShipGame.Core.Models;
 using BattleShipGame.Core.ValuesObjects;
-
+using BattleShipGame.UseCases;
 
 
 var player1Name = "";
+var player2Name = "";
 
 do
 {
@@ -13,9 +14,18 @@ do
     player1Name = Console.ReadLine();
 } while (player1Name is "" or null);
 
+do
+{
+    Console.WriteLine("Player 2 name :");
+    player2Name = Console.ReadLine();
+} while (player2Name is "" or null);
+
 var game = new Game();
 game.Player1 = new Player(player1Name, new BattleField());
 ProvideShipsTo(game.Player1);
+
+game.Player2 = new Player(player2Name, new BattleField());
+ProvideShipsTo(game.Player2);
 
 
 void ProvideShipsTo(Player player)
@@ -34,18 +44,15 @@ void ProvideShipsTo(Player player)
             {
                 Console.WriteLine($"Player {player.GetUsername()}, Ship{i + 1} {ship.ToString()}, Cell {shipLength} : ");
         
-                Console.WriteLine("Enter Column: ");
-                var columnValue = Console.ReadLine();
-                var column = new Column(columnValue);
-        
-            
-                Console.WriteLine("Enter Row: ");
-                var rowValue = Console.ReadLine();
-                var row = new Row(Convert.ToInt32(rowValue));
+                Console.WriteLine("Enter Column e Row, ex: A12: ");
+                var cellCordinates = Console.ReadLine();
+                
+                if (string.IsNullOrEmpty(cellCordinates))
+                {
+                    throw new ArgumentException("Cell cordinates are required.");
+                }
 
-                var cell = new Cell(column, row);
-        
-                ship.FillCell(cell);
+                ship = new SetChipCellUseCase().Execute(ship, cellCordinates);
         
                 --shipLength;
             }
