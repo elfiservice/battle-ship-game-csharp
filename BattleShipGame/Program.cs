@@ -3,7 +3,7 @@
 using BattleShipGame.Core.Models;
 using BattleShipGame.Core.ValuesObjects;
 
-var game = new Game();
+
 
 var player1Name = "";
 
@@ -13,19 +13,19 @@ do
     player1Name = Console.ReadLine();
 } while (player1Name is "" or null);
 
+var game = new Game();
 game.Player1 = new Player(player1Name, new BattleField());
 ProvideShipsTo(game.Player1);
 
 
 void ProvideShipsTo(Player player)
 {
-    var battleFieldPlayer1 = player.GetBattleField();
-
-    var numberOfShipsToProvide = battleFieldPlayer1.RequiredShips.Length;
+    var battleField = player.GetBattleField();
+    var numberOfShipsToProvide = battleField.RequiredShips.Length;
 
     for (int i = 0; i < numberOfShipsToProvide; i++)
     {
-        var ship = battleFieldPlayer1.RequiredShips[i];
+        var ship = battleField.RequiredShips[i];
         var shipLength = ship.GetShipLength();
 
         do
