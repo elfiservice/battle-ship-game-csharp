@@ -12,9 +12,8 @@ public abstract class Ship(int length)
     
     public void FillCell(Cell cell)
     {
-        CheckPreviousCell(cell);
         SetDirection(cell);
-        
+        CheckPreviousCell(cell);
         CheckPreviousRow(cell);
         CheckPreviousColumn(cell);
         CheckSequentialCells(cell);
@@ -52,7 +51,7 @@ public abstract class Ship(int length)
         var lastCell = Cells.Last();
         if (lastCell.Column.GetValue() == cell.Column.GetValue() && lastCell.Row.GetValue() == cell.Row.GetValue())
         {
-            throw new ArgumentException("The cell is already in the ship.");
+            ThrowErrorMessageToUser("The cell is already in the ship.");
         }
     }
     
@@ -66,7 +65,7 @@ public abstract class Ship(int length)
         var lastCell = Cells.Last();
         if (lastCell.Column.GetValue() == cell.Column.GetValue() && lastCell.Row.GetIndex() != cell.Row.GetIndex() - 1)
         {
-            throw new ArgumentException("The Ship is not in the same row.");
+            ThrowErrorMessageToUser("The Ship is not in the same row.");
         }
     }
     
@@ -80,7 +79,7 @@ public abstract class Ship(int length)
         var lastCell = Cells.Last();
         if (lastCell.Row.GetValue() == cell.Row.GetValue() && lastCell.Column.GetIndex() != cell.Column.GetIndex() - 1)
         {
-            throw new ArgumentException("The Ship is not in the same column.");
+            ThrowErrorMessageToUser("The Ship is not in the same column.");
         }
     }
     
@@ -96,17 +95,23 @@ public abstract class Ship(int length)
         if (Direction == Horizontal  && (lastCell.Row.GetValue() != cell.Row.GetValue() ||
                                          lastCell.Column.GetIndex() != cell.Column.GetIndex() - 1))
         {
-            throw new ArgumentException("The Ship is not follow the correct Horizontal sequence.");
+            ThrowErrorMessageToUser("The Ship is not follow the correct Horizontal sequence.");
         }
         
         if (Direction == Vertical && (lastCell.Column.GetValue() != cell.Column.GetValue() ||
                                       lastCell.Row.GetIndex() != cell.Row.GetIndex() - 1))
         {
-            throw new ArgumentException("The Ship is not follow the correct Vertical sequence.");
+            ThrowErrorMessageToUser("The Ship is not follow the correct Vertical sequence.");
         }
 
     }
-    
+
+    private void ThrowErrorMessageToUser(string message)
+    {
+        CheckToResetDirection();
+        throw new ArgumentException(message);
+    }
+
     private void SetDirection(Cell cell)
     {
         var shouldNotSetDirection = Direction != 0;
@@ -125,6 +130,14 @@ public abstract class Ship(int length)
         else
         {
             Direction = Horizontal;
+        }
+    }
+    
+    private void CheckToResetDirection()
+    {
+        if (Cells.Length == 1)
+        {
+            Direction = 0;
         }
     }
 }

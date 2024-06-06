@@ -53,12 +53,17 @@ void ProvideShipsTo(Player player)
                 }
 
                 ship = new SetChipCellUseCase().Execute(ship, cellCordinates);
+                
+                // TODO check in all ships if the cell is already exist in some of them
         
                 --shipLength;
             }
             catch (Exception e)
             {
+                Console.BackgroundColor = ConsoleColor.Red;
+                Console.ForegroundColor = ConsoleColor.White;
                 Console.WriteLine($"Ops! {e.Message}, try again.");
+                Console.ResetColor();
             }
 
         } while (shipLength > 0);
