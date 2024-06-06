@@ -55,6 +55,10 @@ void ProvideShipsTo(Player player)
                 ship = new SetChipCellUseCase().Execute(ship, cellCordinates);
                 
                 // TODO check in all ships if the cell is already exist in some of them
+                if (battleField.CellHitOtherShip(cellCordinates, ship))
+                {
+                    throw new ArgumentException("The cell is already in another ship.");
+                }
         
                 --shipLength;
             }

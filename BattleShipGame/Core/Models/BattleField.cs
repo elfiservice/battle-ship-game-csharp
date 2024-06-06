@@ -18,4 +18,12 @@ public class BattleField
     {
         return _validDimension.Length;
     }
+    
+    public bool CellHitOtherShip(string cellCordinates, Ship ship)
+    {
+        return RequiredShips.Any(requiredShip =>
+                    requiredShip != ship &&
+                    requiredShip.GetCells().Any(cell =>
+                        cell.GetCordinates() == cellCordinates));
+    }
 }
