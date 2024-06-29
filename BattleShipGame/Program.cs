@@ -51,14 +51,17 @@ void ProvideShipsTo(Player player)
                 {
                     throw new ArgumentException("Cell cordinates are required.");
                 }
-
-                ship = new SetChipCellUseCase().Execute(ship, cellCordinates);
                 
-                // TODO check in all ships if the cell is already exist in some of them
                 if (battleField.CellHitOtherShip(cellCordinates, ship))
                 {
                     throw new ArgumentException("The cell is already in another ship.");
                 }
+                
+                // TODO check if the Chip is overlaying the bondaries of the battlefield
+                
+                ship = new SetChipCellUseCase().Execute(ship, cellCordinates);
+                
+ 
         
                 --shipLength;
             }
