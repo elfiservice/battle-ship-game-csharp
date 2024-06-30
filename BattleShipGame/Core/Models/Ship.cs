@@ -20,6 +20,16 @@ public abstract class Ship(int length)
         Cells = Cells.Concat(new Cell[] { cell }).ToArray();
     }
     
+    public void ClearCells()
+    {
+        Cells = Array.Empty<Cell>();
+    }
+    
+    public int GetDirection()
+    {
+        return Direction;
+    }
+    
     public void RemoveCell(Cell cell)
     {
         Cells = Cells.Where(c => c != cell).ToArray();
