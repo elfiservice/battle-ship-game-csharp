@@ -52,6 +52,13 @@ void ProvideShipsTo(Player player)
                     throw new ArgumentException("Cell cordinates are required.");
                 }
                 
+                if (battleField.ShipOverlayBoundaries(ship))
+                {
+                    ship.ClearCells();
+                    shipLength = ship.GetShipLength();
+                    throw new ArgumentException("The ship is overlaying the boundaries of the battlefield.");
+                }
+                
                 if (battleField.CellHitOtherShip(cellCordinates, ship))
                 {
                     throw new ArgumentException("The cell is already in another ship.");
@@ -73,7 +80,7 @@ void ProvideShipsTo(Player player)
                 Console.ResetColor();
             }
 
-        } while (shipLength > 0);
+        } while (ship.GetCells().Length < ship.GetShipLength());
     
         Console.WriteLine($"LOG: {ship.ShowShipToString()}");
     }
