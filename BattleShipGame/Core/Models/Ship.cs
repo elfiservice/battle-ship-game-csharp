@@ -150,4 +150,9 @@ public abstract class Ship(int length)
             Direction = 0;
         }
     }
+    
+    public bool HasCellToFill()
+    {
+        return Cells.Length < _length;
+    }
 }

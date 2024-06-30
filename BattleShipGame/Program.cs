@@ -36,13 +36,12 @@ void ProvideShipsTo(Player player)
     for (int i = 0; i < numberOfShipsToProvide; i++)
     {
         var ship = battleField.RequiredShips[i];
-        var shipLength = ship.GetShipLength();
 
         do
         {
             try
             {
-                Console.WriteLine($"Player {player.GetUsername()}, Ship{i + 1} {ship.ToString()}, Cell {shipLength} : ");
+                Console.WriteLine($"Player {player.GetUsername()}, Ship{i + 1} {ship.ToString()}, Cell {ship.GetCells().Length + 1} : ");
         
                 Console.WriteLine("Enter Column e Row, ex: A12: ");
                 var cellCordinates = Console.ReadLine();
@@ -55,7 +54,6 @@ void ProvideShipsTo(Player player)
                 if (battleField.ShipOverlayBoundaries(ship))
                 {
                     ship.ClearCells();
-                    shipLength = ship.GetShipLength();
                     throw new ArgumentException("The ship is overlaying the boundaries of the battlefield.");
                 }
                 
@@ -64,13 +62,8 @@ void ProvideShipsTo(Player player)
                     throw new ArgumentException("The cell is already in another ship.");
                 }
                 
-                // TODO check if the Chip is overlaying the bondaries of the battlefield
-                
                 ship = new SetChipCellUseCase().Execute(ship, cellCordinates);
                 
- 
-        
-                --shipLength;
             }
             catch (Exception e)
             {
@@ -80,7 +73,7 @@ void ProvideShipsTo(Player player)
                 Console.ResetColor();
             }
 
-        } while (ship.GetCells().Length < ship.GetShipLength());
+        } while (ship.HasCellToFill());
     
         Console.WriteLine($"LOG: {ship.ShowShipToString()}");
     }
