@@ -44,25 +44,9 @@ void ProvideShipsTo(Player player)
                 Console.WriteLine($"Player {player.GetUsername()}, Ship{i + 1} {ship.ToString()}, Cell {ship.GetCells().Length + 1} : ");
         
                 Console.WriteLine("Enter Column e Row, ex: A12: ");
-                var cellCordinates = Console.ReadLine();
+                var cellCoordinates = Console.ReadLine();
                 
-                if (string.IsNullOrEmpty(cellCordinates))
-                {
-                    throw new ArgumentException("Cell cordinates are required.");
-                }
-                
-                if (battleField.ShipOverlayBoundaries(ship))
-                {
-                    ship.ClearCells();
-                    throw new ArgumentException("The ship is overlaying the boundaries of the battlefield.");
-                }
-                
-                if (battleField.CellHitOtherShip(cellCordinates, ship))
-                {
-                    throw new ArgumentException("The cell is already in another ship.");
-                }
-                
-                ship = new SetChipCellUseCase().Execute(ship, cellCordinates);
+                ship = new SetChipCellUseCase().Execute(ship, cellCoordinates, battleField);
                 
             }
             catch (Exception e)
