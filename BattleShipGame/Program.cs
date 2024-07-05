@@ -27,6 +27,8 @@ ProvideShipsTo(game.Player1);
 game.Player2 = new Player(player2Name, new BattleField());
 ProvideShipsTo(game.Player2);
 
+StartGame(game);
+
 
 void ProvideShipsTo(Player player)
 {
@@ -61,6 +63,61 @@ void ProvideShipsTo(Player player)
     
         Console.WriteLine($"LOG: {ship.ShowShipToString()}");
     }
+}
+
+void StartGame(Game gameToStart)
+{
+    var currentPlayer = gameToStart.Player1;
+    var opponentPlayer = gameToStart.Player2;
+
+    do
+    {
+        Console.WriteLine($"Player {currentPlayer.GetUsername()}, your turn.");
+        Console.WriteLine("Enter with your guess, Column e Row, ex: A12: ");
+        var cellCoordinates = Console.ReadLine();
+        
+        try
+        {
+            bool hit = new ShootTheOpponentUseCase().Execute(currentPlayer, opponentPlayer, cellCoordinates ?? "");
+            
+            if (hit)
+            {
+                Console.BackgroundColor = ConsoleColor.Green;
+                Console.ForegroundColor = ConsoleColor.White;
+                Console.WriteLine("HIT!");
+                Console.ResetColor();
+            }
+            else
+            {
+                Console.BackgroundColor = ConsoleColor.Blue;
+                Console.ForegroundColor = ConsoleColor.White;
+                Console.WriteLine("MISS!");
+                Console.ResetColor();
+            }
+            
+            var hasShips = opponentPlayer.HasShips();
+            if (!hasShips)
+            {
+                gameToStart.SetWinner(currentPlayer);
+                
+                Console.BackgroundColor = ConsoleColor.Green;
+                Console.ForegroundColor = ConsoleColor.White;
+                Console.WriteLine($"Player {currentPlayer.GetUsername()} wins!");
+                Console.ResetColor();
+                break;
+            }
+            
+            (currentPlayer, opponentPlayer) = (opponentPlayer, currentPlayer);
+        }
+        catch (Exception e)
+        {
+            Console.BackgroundColor = ConsoleColor.Red;
+            Console.ForegroundColor = ConsoleColor.White;
+            Console.WriteLine($"Ops! {e.Message}, try again.");
+            Console.ResetColor();
+        }
+        
+    } while (gameToStart.HasNotWinner());
 }
 
 Console.WriteLine("##### END #####");

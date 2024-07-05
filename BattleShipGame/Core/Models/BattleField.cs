@@ -69,4 +69,31 @@ public class BattleField
 
         return false;
     }
+    
+    private Ship GetShipByCell(string cellCordinates)
+    {
+        return RequiredShips.First(ship =>
+            ship.GetCells().Any(cell =>
+                cell.GetCordinates() == cellCordinates));
+    }
+    
+    public bool AllShipsDestroyed()
+    {
+        return RequiredShips.All(ship => ship.GetCells().Length == 0);
+    }
+    
+    public bool HitShip(Cell currentlyPlayerShot)
+    {
+        return RequiredShips.Any(ship =>
+            ship.GetCells().Any(cell =>
+                cell.GetCordinates() == currentlyPlayerShot.GetCordinates()));
+    }
+    
+    public void RemoveCellFromShip(Cell currentlyPlayerShot)
+    {
+        var ship = GetShipByCell(currentlyPlayerShot.GetCordinates());
+        var cell = ship.GetCells().First(cell => cell.GetCordinates() == currentlyPlayerShot.GetCordinates());
+        
+        ship.RemoveCell(cell);
+    }
 }

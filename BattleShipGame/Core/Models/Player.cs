@@ -4,10 +4,11 @@ public class Player
 {
     string Username { get; set; }
     
-    // maybe not be needed
-    Ship[] Ships { get; set; }
-
     private BattleField BattleField { get; set; }
+
+    private List<Cell> OwnGuesses { get; set; } = [];
+
+    private List<Cell> OpponentGuesses { get; set; } = [];
 
     public Player(string username, BattleField battleField)
     {
@@ -17,23 +18,8 @@ public class Player
         }
         Username = username;
         BattleField = battleField;
-        Ships = new Ship[] { };
     }
     
-    public void AddShip(Ship ship)
-    {
-        Ships = Ships.Concat(new Ship[] { ship }).ToArray();
-    }
-    
-    public void RemoveShip(Ship ship)
-    {
-        Ships = Ships.Where(s => s != ship).ToArray();
-    }
-    
-    public Ship[] GetShips()
-    {
-        return Ships;
-    }
     
     public string GetUsername()
     {
@@ -42,7 +28,7 @@ public class Player
     
     public bool HasShips()
     {
-        return Ships.Length > 0;
+        return !BattleField.AllShipsDestroyed();
     }
 
     public void SetBattleField(BattleField field)
@@ -53,5 +39,23 @@ public class Player
     public BattleField GetBattleField()
     {
         return BattleField;
+    }
+    
+    public void ShotToOpponent(Player opponent, Cell myShotCell)
+    {
+        if (MyShotExistInMyOwnGuesses(myShotCell))
+        {
+            throw new Exception("You already tried this coordinate.");
+        }
+        else
+        {
+            OwnGuesses.Add(myShotCell);
+            opponent.OpponentGuesses.Add(myShotCell);
+        }
+    }
+    
+    private bool MyShotExistInMyOwnGuesses(Cell cell)
+    {
+        return OwnGuesses.Any(c => c.GetCordinates() == cell.GetCordinates());
     }
 }
