@@ -1,12 +1,14 @@
-using BattleShipGame.CoreBusiness.Core.Models.Ships;
 
-namespace BattleShipGame.CoreBusiness.Core.Models;
+using BattleShipGame.CoreBusiness.Core.ValuesObjects.Ships;
+
+namespace BattleShipGame.CoreBusiness.Core.ValuesObjects;
 
 public class BattleField
 {
     private string[] _validDimension = new[] { "A", "B", "C", "D", "E", "F", "G", "H", "I", "J" };
     public Ship[] RequiredShips = new Ship[]
     {
+        
         // new Carrier(),
         // new Battleship(),
         // new PatrolBoat(),

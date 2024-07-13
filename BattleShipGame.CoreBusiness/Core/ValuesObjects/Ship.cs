@@ -1,4 +1,4 @@
-namespace BattleShipGame.CoreBusiness.Core.Models;
+namespace BattleShipGame.CoreBusiness.Core.ValuesObjects;
 
 public abstract class Ship(int length)
 {

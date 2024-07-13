@@ -1,3 +1,5 @@
+using BattleShipGame.CoreBusiness.Core.ValuesObjects;
+
 namespace BattleShipGame.CoreBusiness.Core.Models;
 
 public class Player

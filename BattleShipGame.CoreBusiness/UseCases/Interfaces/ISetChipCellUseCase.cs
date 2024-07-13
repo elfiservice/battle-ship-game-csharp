@@ -1,4 +1,5 @@
-using BattleShipGame.CoreBusiness.Core.Models;
+
+using BattleShipGame.CoreBusiness.Core.ValuesObjects;
 
 namespace BattleShipGame.CoreBusiness.UseCases.Interfaces;
 

@@ -1,4 +1,4 @@
-namespace BattleShipGame.CoreBusiness.Core.Models.Ships;
+namespace BattleShipGame.CoreBusiness.Core.ValuesObjects.Ships;
 
 public class Battleship() : Ship(length: 4)
 {
