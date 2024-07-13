@@ -1,8 +1,8 @@
-using BattleShipGame.Core.Models;
-using BattleShipGame.Core.ValuesObjects;
-using BattleShipGame.UseCases.Interfaces;
+using BattleShipGame.CoreBusiness.Core.Models;
+using BattleShipGame.CoreBusiness.Core.ValuesObjects;
+using BattleShipGame.CoreBusiness.UseCases.Interfaces;
 
-namespace BattleShipGame.UseCases;
+namespace BattleShipGame.CoreBusiness.UseCases;
 
 public class ShootTheOpponentUseCase : IShootTheOpponentUseCase
 {

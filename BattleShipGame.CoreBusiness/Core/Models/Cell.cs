@@ -1,6 +1,6 @@
-using BattleShipGame.Core.ValuesObjects;
+using BattleShipGame.CoreBusiness.Core.ValuesObjects;
 
-namespace BattleShipGame.Core.Models;
+namespace BattleShipGame.CoreBusiness.Core.Models;
 
 public class Cell(Column column, Row row)
 {

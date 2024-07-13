@@ -1,4 +1,4 @@
-namespace BattleShipGame.Core.ValuesObjects;
+namespace BattleShipGame.CoreBusiness.Core.ValuesObjects;
 
 public class Column
 {

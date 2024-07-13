@@ -1,4 +1,4 @@
-namespace BattleShipGame.Core.Models.Ships;
+namespace BattleShipGame.CoreBusiness.Core.Models.Ships;
 
 public class Destroyer() : Ship(length: 3)
 {

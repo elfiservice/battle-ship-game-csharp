@@ -1,8 +1,7 @@
 ﻿// See https://aka.ms/new-console-template for more information
 
-using BattleShipGame.Core.Models;
-using BattleShipGame.Core.ValuesObjects;
-using BattleShipGame.UseCases;
+using BattleShipGame.CoreBusiness.Core.Models;
+using BattleShipGame.CoreBusiness.UseCases;
 
 
 var player1Name = "";

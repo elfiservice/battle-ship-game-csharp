@@ -1,6 +1,6 @@
-using BattleShipGame.Core.Models;
+using BattleShipGame.CoreBusiness.Core.Models;
 
-namespace BattleShipGame.UseCases.Interfaces;
+namespace BattleShipGame.CoreBusiness.UseCases.Interfaces;
 
 public interface ISetChipCellUseCase
 {

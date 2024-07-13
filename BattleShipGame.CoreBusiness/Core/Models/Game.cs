@@ -1,4 +1,4 @@
-namespace BattleShipGame.Core.Models;
+namespace BattleShipGame.CoreBusiness.Core.Models;
 
 public class Game
 {

@@ -1,14 +1,14 @@
-namespace BattleShipGame.Core.Models;
+namespace BattleShipGame.CoreBusiness.Core.Models;
 
 public abstract class Ship(int length)
 {
     private int _length = length;
-    private Cell[] Cells { get; set; } = Array.Empty<Cell>();
+    private Cell[] Cells { get; set; } = [];
     
     private int Direction { get; set; } = 0;
-    
-    const int Horizontal = 1;
-    const int Vertical = 2;
+
+    private const int Horizontal = 1;
+    private const int Vertical = 2;
     
     public void FillCell(Cell cell)
     {
