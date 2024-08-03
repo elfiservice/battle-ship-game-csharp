@@ -2,11 +2,9 @@ namespace BattleShipGame.CoreBusiness.Core.ValuesObjects;
 
 public abstract class Ship(int length)
 {
-    private int _length = length;
     private Cell[] Cells { get; set; } = [];
     
     private int Direction { get; set; } = 0;
-
     private const int Horizontal = 1;
     private const int Vertical = 2;
     
@@ -42,7 +40,7 @@ public abstract class Ship(int length)
 
     public int GetShipLength()
     {
-        return _length;
+        return length;
     }
 
     public string ShowShipToString()
@@ -153,6 +151,6 @@ public abstract class Ship(int length)
     
     public bool HasCellToFill()
     {
-        return Cells.Length < _length;
+        return Cells.Length < length;
     }
 }
