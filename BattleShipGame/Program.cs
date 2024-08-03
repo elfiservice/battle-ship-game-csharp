@@ -82,17 +82,11 @@ void StartGame(Game gameToStart)
             
             if (hit)
             {
-                Console.BackgroundColor = ConsoleColor.Green;
-                Console.ForegroundColor = ConsoleColor.White;
-                Console.WriteLine("HIT!");
-                Console.ResetColor();
+                ShowMessageToUser(MessageLevel.Success, "HIT!");
             }
             else
             {
-                Console.BackgroundColor = ConsoleColor.Blue;
-                Console.ForegroundColor = ConsoleColor.White;
-                Console.WriteLine("MISS!");
-                Console.ResetColor();
+                ShowMessageToUser(MessageLevel.Info, "MISS!");
             }
             
             var hasShips = opponentPlayer.HasShips();
@@ -100,9 +94,8 @@ void StartGame(Game gameToStart)
             {
                 gameToStart.SetWinner(currentPlayer);
                 
-                Console.BackgroundColor = ConsoleColor.Green;
-                Console.ForegroundColor = ConsoleColor.White;
-                Console.WriteLine($"Player {currentPlayer.GetUsername()} wins!");
+                ShowMessageToUser(
+                    MessageLevel.Success, $"Player {currentPlayer.GetUsername()} wins!");
                 Console.ResetColor();
                 break;
             }
@@ -111,13 +104,41 @@ void StartGame(Game gameToStart)
         }
         catch (Exception e)
         {
-            Console.BackgroundColor = ConsoleColor.Red;
-            Console.ForegroundColor = ConsoleColor.White;
-            Console.WriteLine($"Ops! {e.Message}, try again.");
-            Console.ResetColor();
+            ShowMessageToUser(
+                MessageLevel.Error, $"Ops! {e.Message}, try again.");
         }
         
     } while (gameToStart.HasNotWinner());
 }
 
 Console.WriteLine("##### END #####");
+
+
+void ShowMessageToUser(MessageLevel type, string message)
+{
+    Console.BackgroundColor = GetColorByMessageLevel(type);
+    Console.ForegroundColor = ConsoleColor.White;
+    Console.WriteLine(message);
+    Console.ResetColor();
+}
+
+ConsoleColor GetColorByMessageLevel(MessageLevel type)
+{
+    return type switch
+    {
+        MessageLevel.Error => ConsoleColor.Red,
+        MessageLevel.Warning => ConsoleColor.Yellow,
+        MessageLevel.Info => ConsoleColor.Blue,
+        MessageLevel.Success => ConsoleColor.Green,
+        _ => ConsoleColor.White
+    };
+}
+
+enum MessageLevel
+{
+    Error,
+    Warning,
+    Info,
+    Success
+}
+
