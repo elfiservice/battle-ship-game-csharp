@@ -49,11 +49,9 @@ public class Player
         {
             throw new Exception("You already tried this coordinate.");
         }
-        else
-        {
-            OwnGuesses.Add(myShotCell);
-            opponent.OpponentGuesses.Add(myShotCell);
-        }
+        
+        OwnGuesses.Add(myShotCell);
+        opponent.OpponentGuesses.Add(myShotCell);
     }
     
     private bool MyShotExistInMyOwnGuesses(Cell cell)

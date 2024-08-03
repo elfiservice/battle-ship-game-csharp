@@ -5,14 +5,13 @@ namespace BattleShipGame.CoreBusiness.Core.ValuesObjects;
 
 public class BattleField
 {
-    private string[] _validDimension = new[] { "A", "B", "C", "D", "E", "F", "G", "H", "I", "J" };
-    public Ship[] RequiredShips = new Ship[]
+    private readonly string[] _validDimension = new[] { "A", "B", "C", "D", "E", "F", "G", "H", "I", "J" };
+    public readonly Ship[] RequiredShips = new Ship[]
     {
-        
-        // new Carrier(),
-        // new Battleship(),
-        // new PatrolBoat(),
-        // new Submarine(),
+        new Carrier(),
+        new Battleship(),
+        new PatrolBoat(),
+        new Submarine(),
         new Destroyer()
     };
     
